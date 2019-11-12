@@ -1,3 +1,8 @@
 *.slxc
 *.autosave
-*..*¬
+
+*.m~
+*.mat
+*.xml
+*.txt
+
