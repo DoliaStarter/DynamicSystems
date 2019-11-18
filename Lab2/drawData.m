@@ -5,7 +5,9 @@
     ax1 = nexttile;
     for i = 1:length(WPCval)
         res = sim('Lab2');
-        plot(res.x(:,1), res.x(:,2),'LineWidth', 1)        
+        plot(res.x(:,1), res.x(:,2),'LineWidth', 1)   
+        xlabel('X1')
+        xlabel('X2')
         % direction 
         hold on
         p1 = [res.x(i,1) res.x(i,2)];
@@ -39,7 +41,9 @@
         p = max(abs(WPC(1)),abs(WPC(2)));
         WPC = WPC/p;
         res = sim('Lab2');
-        plot(res.x(:,1), res.x(:,2),'LineWidth', 1)
+        plot(res.x(:,1), res.x(:,2),'LineWidth', 2)
+        xlabel('X1')
+        xlabel('X2')
         hold on
         % direction 
         p1 = [res.x(i,1) res.x(i,2)];

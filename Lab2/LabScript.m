@@ -2,11 +2,13 @@ WPC = [0;0];
 
 % Initial J and P values for A:
 P = eye(2);
-J = diag([0,1]);
-%A = P * J * P^(-1);
-A = [0,1;-1,0];
+
+% Przypadek 9 
+J = [-2+2*i,0;0,-2-2*i];
+A = P * J * P^(-1);
+
+
+
 figure('Renderer', 'painters', 'Position', [10 10 900 600])
 open('Lab2');
 drawData
-
-% Case number one: Eigenvalues are both equals to 0
