@@ -1,17 +1,17 @@
     
     tiledlayout(1,1);
     clf
-    WPCval = linspace(0,2*pi,4);
+    WPCval = linspace(0,2*pi,100);
     ax1 = nexttile;
     for i = 1:length(WPCval)
         res = sim('Lab2');
-        plot(res.x(:,1), res.x(:,2),'LineWidth', 1)        
+        plot(res.x(:,1), res.x(:,2),'k','LineWidth', 1)        
         % direction 
         hold on
         p1 = [res.x(i,1) res.x(i,2)];
-        p2 = [res.x(i+20,1) res.x(i+20,2)];
-        dp = p2 - p1
-        quiver(p1(1),p1(2)+p1(2) * 0.2 * dp(2),dp(1),dp(2),'k')
+        p2 = [res.x(i+200,1) res.x(i+200,2)];
+        dp = p2 - p1;
+        quiver(p1(1),p1(2)+p1(2) * 0.2 * dp(2),dp(1),dp(2),'r')
        %-------------------------
         hold on 
         WPC(1) = sin(WPCval(i));
@@ -57,6 +57,7 @@
     grid
     title("WPC from borders of square")
     axis square
+    
     %-------------------------
     disp('Press any key to continue')
     pause
