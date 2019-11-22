@@ -2,7 +2,7 @@
     tiledlayout(1,1);
     clf
     
-    WPCval = linspace(0,2*pi,10);
+    WPCval = linspace(0,2*pi,50);
     ax1 = nexttile;
     if InitialSystemState == 'Circle'
     for idx = 1:length(WPCval)

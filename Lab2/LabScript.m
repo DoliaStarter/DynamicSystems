@@ -1,3 +1,5 @@
+% ----------------------Forostianyi Bohdan ------------------------- %
+
 WPC = [0;0];
 B = [0;0];
 D = [0;0];
@@ -69,31 +71,27 @@ drawData
 % Solver nie przyjmuje liczby zespolone, dlatego nalezy przekonwertowac je na liczby rzeczywiste, 
 % zamieniac kazda liczbe rzeczywista macierza o wymiarach 2 x 2
 % W tym celu nalezy takze zmienic inne paramerty.
-P = eye(4);
-WPC = [0;0;0;0];
-B = [0;0;0;0];
-D = [0;0;0;0];
-C = eye(4);
+
 
 % 8 Zespolone wartosci wlasne, czesc rzeczywista jest rowna 0
-% J  = [ 1i, 0;0, -1i];
+J  = [ -1i, 0;0, 1i];
+P = [1i,-1i;1,1];
 disp('8')
-J = [0,1,0,0;0,-1,0,0;0,0,0,-1;0,0,1,0];
 A = P * J * P^(-1);
 drawData
 
-% 9 Wartosci wlasne - dwie spzezone liczbe urojone, mnijesze od zera 
-%J=[-2-2i,0;0,-2+2i];
+% 9 Wartosci wlasne - dwie spzezone liczbe zespolone, mnijesze od zera 
+J=[-1-2i,0;0,-1+2i];
+P = [-1+2i,-1-2i;5,5];
 disp('9')
-J = [-2,-2,0,0;2,-2,0,0;0,0,-2,2;0,0,2,2];
-A = P * J * P^(-1);
+A = real(P * J * P^(-1));
 drawData
 % ----------------------------------------------------------------------
 % Druga czesc cwiczenia. 
 % Badanie wplywu wartosci wlasnych 
 % Ten sam uklad wartosci wlascnych, ale one sa w rozny sposob
 % przeskalowane
-disp('Skalowanie lambd')
+disp('Macierz podstawowa')
 P = eye(2);
 J = [-1,1;0,-1];
 WPC = [0;0];
@@ -101,33 +99,27 @@ B = [0;0];
 D = [0;0];
 A = [0,0;0,0];
 C = eye(2);
-
-J = J * 2;
+drawData
+disp('Macierz z ww odpowiadajaca wektorowi Y zamieniona na -10')
+J = [-1,1;0,-10];
 A = P * J * P^(-1);
 drawData
 %
-disp('Skalowanie lambd')
-J = J * 8;
+disp('Macierz z ww odpowiadajaca wektorowi X zamieniona na -10')
+
+J = [-10,1;0,-1];
 A = P * J * P^(-1);
 drawData
 %------------------------------------------
 
 
-J = diag([-1, 0]);
-% Badanie wplywu wektorow wlasnych
-disp('Zmiana wektorow wlasnych')
-P = [1,0;0,1];
-A = P * J * P^(-1)
-drawData
-
-% Druga czesc cwiczenia. Rozwiazanie dla roznych wektorow wlasnych
+% Druga czesc cwiczenia. Wykresy dla roznych wektorow wlasnych
 P = [1,1;0,1];
 A = P * J * P^(-1)
 drawData
 disp('Zmiana wektorow wlasnych')
-
 P = [1,-1;0,1];
-A = P * J * P^(-1)
+A = P * J * P^(-1);
 drawData
 %------------------------------------------
 
