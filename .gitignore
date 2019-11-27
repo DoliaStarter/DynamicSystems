@@ -1,6 +1,6 @@
-*.slxc
+slprj
 *.autosave
-
+*.slxc
 *.m~
 *.mat
 *.xml
