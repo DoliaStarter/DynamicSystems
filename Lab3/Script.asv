@@ -1,17 +1,13 @@
-SimTime = 10;
 A = 1;
 B = 0;
 C = 1;
 D = 0;
-IC = 5; % Initial condition - wartosc poczatkowa ukladu. Potrzebna zeby widzic 
-% jak zachowuje sie uklad w zaleznosci od parametrow
-% Step - parametr, ktory odpowiada kroku h
-Step = 2;
-% Dla wszystkich wartosci podawanych w simulink jako wejscie musi byc
-% zachowany format o postaci [Czas,WartoscSygnalu]
+IC = exp(1); 
 
-Time = 0:Step:SimTime;
-Signals = 0:Step:SimTime;
+Step = 1;
+SimTime=5;
+Time = 0:0.1:SimTime;
+Signals = 0:0.1:SimTime;
 
 u_t = [Time',Signals'];
 
@@ -23,60 +19,51 @@ D=0;
 A = -3;
 
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 
 %2 A = -1
 A = -1;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 
 %A in (-1;0)
 A = -0.5;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 
 %A = 0
 A = 0;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 
 %A in (0;1)
 A = 0.5;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 %A = 1
 A = 1;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 %A > 1
 A = 3;
 a = sim('Lab3');
-plotData(a,A,IC);
+DiscreteExp(a,A,Time,IC);
 
-
-%Zadanie 2
-Step = 1;
-IC = 5;
-A = [0,1;-6,-11];
-D = [0;0];
+% Matrix analysis %
+A = eye(2);
 B = [0;1];
 C = eye(2);
-AP = expm(A*Step);
-syms t;
-fun = expm(t * A);
-BP = double(vpaintegral(fun,t,[0 Step])) * B;
-a = sim('Lab3_zad2');
-scatter(a.discrete.Time,a.discrete.Data(:,1),'r','f')
-hold on
-%scatter(a.discrete.Time,a.discrete.Data(:,2),'b','f')
-%hold on
-plot(a.cont.Time, a.cont.Data(:,1),'k')
-hold off
-grid
-legend('Punkty obliczone na podstawie rownania rekurycyjnego','Prosta otrzymana za pomoca zoh')
-disp('Press any key ...')
-pause;
+D = [0;0];
+IC = 5;
+a = sim('Lab3');
 
+%scatter(a.simout.Time,a.simout.Data(:,2),'filled');
+grid
+
+I=5;  %Illia
+N=9;  %Bannitsyn
+
+A=[0,1;-I,-N];
 
 
 %3 kapitalizacja odsetek
@@ -125,7 +112,7 @@ x=input(prompt);
 
 f=@(x) cos(x)-3*x+1;
 
-df=@(x) -sin(x)-3;
+df=diff(f)
 a=-1; b=1;
 
 MaxIterations=1000;
