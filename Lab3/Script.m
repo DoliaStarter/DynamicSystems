@@ -1,3 +1,4 @@
+SimTime = 10;
 A = 1;
 B = 0;
 C = 1;
@@ -5,23 +6,12 @@ D = 0;
 IC = 5; % Initial condition - wartosc poczatkowa ukladu. Potrzebna zeby widzic 
 % jak zachowuje sie uklad w zaleznosci od parametrow
 % Step - parametr, ktory odpowiada kroku h
-Step = 1;
+Step = 2;
 % Dla wszystkich wartosci podawanych w simulink jako wejscie musi byc
 % zachowany format o postaci [Czas,WartoscSygnalu]
-% Це не означає. що сигнал моделюватиметься для цих значень
-% Процес. який проходить в сімулінку приблизно такий:
-% 1. Постійно подаються сигнали с елементу simin на блок ZOH.
-% 2. З певною частотою ( в скрипті описана за допомогою змінної step він
-% ( блок ZOH ) пропускає сигнал і починає його утримуати. Тобто:
-% В моменті часу 0 блок ZOH пропустить сигнал 0 ( тому що так виглядає наш
-% вектор сигналів ). 
-% Від 0 до 1с сигнал на виході ZOH не змінюватиметься.
-% В моменті часу 1с він прийме вартість 1. ( тому що так визначений наш
-% вектор сигналів ).
-% І так далі
 
-Time = 0:0.1:10;
-Signals = 0:0.1:10;
+Time = 0:Step:SimTime;
+Signals = 0:Step:SimTime;
 
 u_t = [Time',Signals'];
 
@@ -54,44 +44,72 @@ u_t = [Time',Signals'];
 
 A = -3;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 
 %2 A = -1
 A = -1;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 
 %A in (-1;0)
 A = -0.5;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 
 %A = 0
 A = 0;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 
 %A in (0;1)
 A = 0.5;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 %A = 1
 A = 1;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 %A > 1
 A = 3;
 a = sim('Lab3');
-plotData(a,A,Time,IC);
+plotData(a,A,IC);
 
-% Matrix analysis %
-A = eye(2);
+
+%Zadanie 2
+Step = 1;
+IC = 5;
+A = [0,1;-6,-11];
+D = [0;0];
 B = [0;1];
 C = eye(2);
-D = [0;0];
-IC = 5;
-a = sim('Lab3');
-% a.simout.Data(:,2) - тому що з Data - це матриця, в першій колоні якої
-% стан Х, а в другій У, тобто стан системи яка нас цікавить
-scatter(a.simout.Time,a.simout.Data(:,2),'filled');
+AP = expm(A*Step);
+syms t;
+fun = expm(t * A);
+BP = double(vpaintegral(fun,t,[0 Step])) * B;
+a = sim('Lab3_zad2');
+scatter(a.discrete.Time,a.discrete.Data(:,1),'r','f')
+hold on
+%scatter(a.discrete.Time,a.discrete.Data(:,2),'b','f')
+%hold on
+plot(a.cont.Time, a.cont.Data(:,1),'k')
+hold off
 grid
+legend('Punkty obliczone na podstawie rownania rekurenyjnego','Prosta otrzymana za pomoca zoh')
+disp('Press any key ...')
+pause;
+% Zadanie 3. Kapitalizacja odsetek %
+% Kapitalizacje osetek mozna opisac za pomoca rownania K = K_0 * (1 + r/m)^mn, co
+% odpowiada ukladowi dyskretnemu, z krokiem h, rownym n.
+% Wiadomo, ze gdy n dazy do nieskonczonosci rozwiazanie rownania dazy do
+% funkcji K_0 * e. Sprobujemy to udowodnic w sposob numeryczny, modelujac
+% uklad za pomoca modelu dyskretnego. W rownaniu n odpowiada ilosci wplat
+% na konto klienta. m odpowiada czestotliwosci z jaka bank dokonuje te
+% wplaty. Przebieg badania: 
+% Przyjmujemy czas t, czlyi iloczyn m*n nie zmienia sie. M odpowiada ilosci
+% kapitalizacji w roku. W systemie dyskretnym m - dlugosc kroku h. 
+% Natomiast n - ilosc punktow ktore sie pojawia.
+% Wiedzac jak wyglada model dyskretny sprobujmy opisac go 
+
+% step - krok r.
+Step = 10;
+K_0 = 10;
