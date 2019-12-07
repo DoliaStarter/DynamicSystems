@@ -78,8 +78,6 @@ legend('Punkty obliczone na podstawie rownania rekurycyjnego','Prosta otrzymana 
 disp('Press any key ...')
 pause;
 
-
-
 %3 kapitalizacja odsetek
 B=0;
 C=1;
@@ -90,28 +88,18 @@ r=0.03; % nominalna stopa procentowa
 n=4 % czas trwania inwestycji
 
 m=4; %liczba kapitalizacji w roku
-
+colors = ['r','b','k'];
+ci = 1
+for m=[4,2,1]
 Step=1/m;
 SimTime=n;
 A= (1+r/m)^(m*n); 
 a = sim('Lab3');
-Discrete(a,'r');
-legend
-m=2; 
-
-Step=1/m;
-SimTime=n;
-A= (1+r/m)^(m*n); 
-a = sim('Lab3');
-Discrete(a,'g');
-
-m=1; 
-Step=1/m;
-SimTime=n;
-A= (1+r/m)^(m*n); 
-a = sim('Lab3');
-Discrete(a,'b');
+Discrete(a,colors(ci));
+ci = ci + 1; 
+end
 hold off;
+grid
 legend('Kapitalizacji w roku: 4','Kapitalizacji w roku: 2','Kapitalizacji w roku: 1');
 
 disp('Press any key ...')
@@ -121,23 +109,37 @@ pause;
 
 %Newton-Raphson
 
-prompt = 'Podaj punkt poczatkowy (x0): ';
+%Newton-Raphson
+
+prompt = 'Podaj punkt startowy (x0): ';
 x=input(prompt);
+prompt = 'Podaj punkt dokladnosc (np. 0.01): ';
+precision=input(prompt);
 
-
-f=@(x) cos(x)-3*x+1;
-
-df=@(x) -sin(x)-3;
-a=-1; b=1;
+f=@(x) x^3-2*x^2-11*x+12;
+df=@(x) 3*x^2 - 4*x - 11;
+result=-1.5; b=1.5;
 
 MaxIterations=1000;
- 
+precision=0.01; 
 for i=1:1:MaxIterations
+
 x1=x-(f(x)/df(x));
+disp(x1);
+if abs(f(x1))<precision
+    x=x1;
+    disp('Here')
+    break
+end
+if abs(x1-x)<precision
+    x=x1;
+    disp('Here I am')
+    break
+end
 x=x1;
 end
 sol=x;
-fprintf('Pierwiastek:  %.15f',sol)
+fprintf('Pierwiastek:  %.15f \n',sol)
 
 
 
