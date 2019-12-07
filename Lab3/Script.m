@@ -97,19 +97,4 @@ grid
 legend('Punkty obliczone na podstawie rownania rekurenyjnego','Prosta otrzymana za pomoca zoh')
 disp('Press any key ...')
 pause;
-% Zadanie 3. Kapitalizacja odsetek %
-% Kapitalizacje osetek mozna opisac za pomoca rownania K = K_0 * (1 + r/m)^mn, co
-% odpowiada ukladowi dyskretnemu, z krokiem h, rownym n.
-% Wiadomo, ze gdy n dazy do nieskonczonosci rozwiazanie rownania dazy do
-% funkcji K_0 * e. Sprobujemy to udowodnic w sposob numeryczny, modelujac
-% uklad za pomoca modelu dyskretnego. W rownaniu n odpowiada ilosci wplat
-% na konto klienta. m odpowiada czestotliwosci z jaka bank dokonuje te
-% wplaty. Przebieg badania: 
-% Przyjmujemy czas t, czlyi iloczyn m*n nie zmienia sie. M odpowiada ilosci
-% kapitalizacji w roku. W systemie dyskretnym m - dlugosc kroku h. 
-% Natomiast n - ilosc punktow ktore sie pojawia.
-% Wiedzac jak wyglada model dyskretny sprobujmy opisac go 
 
-% step - krok r.
-Step = 10;
-K_0 = 10;
