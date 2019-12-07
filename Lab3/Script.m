@@ -1,3 +1,4 @@
+clear all;
 SimTime = 10;
 A = 1;
 B = 0;
@@ -117,6 +118,7 @@ disp('Press any key ...')
 pause;
 
 
+
 %Newton-Raphson
 
 prompt = 'Podaj punkt poczatkowy (x0): ';
@@ -136,7 +138,6 @@ x=x1;
 end
 sol=x;
 fprintf('Pierwiastek:  %.15f',sol)
-
 
 
 

@@ -1,7 +1,7 @@
 function Discrete(Simulation,color)
-scatter(Simulation.discrete_out.Time,Simulation.discrete_out.Data,50,color,'filled');
+scatter(Simulation.simout.Time,Simulation.simout.Data,50,color,'filled');
 hold on
-plot(Simulation.discrete_out.Time,Simulation.discrete_out.Data,color);
+plot(Simulation.simout.Time,Simulation.simout.Data,color);
 hold on
 grid
 end
