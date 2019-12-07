@@ -5,6 +5,7 @@ function plotData(Simulation,A,Time,IC)
 % ukladu)
 % Time - czas symulacji
 % IC - stan poczatkowy systemu
+disp Simulation.simout.Data;
 scatter(Simulation.simout.Time,Simulation.simout.Data,'filled');
 hold on
 plot(Simulation.simout.Time,Simulation.simout.Data,'r');
