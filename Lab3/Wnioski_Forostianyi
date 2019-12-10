@@ -1,0 +1,45 @@
+Forostianyi Bohdan
+
+Kod do czwiczenia znajduje się w pliku Skrypt.m
+
+Zadanie 1. Rodzaje zachowań w systemach dyskretnych
+1. Oscylacje, amplituda których wzrasta.
+W związku z tym, że równanie rekurencyjne jest opisane jak x(k+1)=lambda*x(k), a lambda może jest liczbą ujemną widzimy oscylacje. Ponadto, z tego powodu, że |lambda| jest różny od 1, widzimy, że funkcja wzrasta wykładniczo.
+2.Oscylacje, z stalą amplitudą
+Z tego powodu, że wartość |lambda| jest równa 1, widzimy oscylacje z stalą amplitudą. Każda kolejna wartość jest odwrotnością do poprzedniej.
+3. Oscylacje z tłumieniem
+|lambda| < 1 powoduje to, że wartość ciągle się zmniejsza. Widzimy system stabilny. Ponadto widzimy, że ze wszystkich przykładów ten jest najbliższy do rozwiązania równania różniczkowego.
+4. Nagły spadek do 0 i brak oscylacji
+Jeżeli dobierzemy lambdę równą 0, to nasz system nie będzie się zmieniał. Jest to zły model dyskretny z tego powodu, że nie niesie żadnej informacji o systemie.
+5. Wolny wzrost
+Dodatni współczynnik lambda powoduje to, że wartości w modelu już nie występują oscylacje. To, że on jest mniejszy od 1, powoduje bardzo wolny wzrost funkcji.
+6. Stała wartość
+lambda = 1. Widzimy, że nic się nie zmienia. Nie ma oscylacji, wartość funkcji jest stała.
+7. Silny wzrost
+lambda > 1 powoduje to, że funkcja szybko rośnie. Nie na tyle jednak szybko, jak rozwiązanie podobnego równania ciągłego.
+
+                            Wniosek
+Widzimy, że mimo tego że oba liniowe równania: dyskretne i ciągłe, opisują systemu z taką samą macierzą stanu i sterowaniem, ich rozwiązania bardzo silnie się różnią. Mimo tego,w systemie dyskretnym mogą wystąpić także zjawiska, które nie mają nie występują w systemach ciągłych. Głównym wnioskiem, z powyższych zadań jest to, że nie możemy używać tych samych parametrów. Musimy natomiast skorzystać ze wzorów , które pozwolą nam przekształcić parametry z modelu ciągłego na parametry modelu dyskretnego.    
+
+Zadanie 2. Porównania układu dyskretnego i dyskretno-ciągłego
+W zadaniu 2 widzimy, że można prawie bezstratnie przejść od systemu ciągłego do systemu dyskretnego w czasie.
+Czasami jest to potrzebne z tego powodu, że nie interesuje nas zachowanie się systemu z dokładnością do milisekundy, z tego powodu, że nie niesie to w sobie potrzebnej nam informacji, natomiast jest obliczeniowo drogie.
+Na przykład:
+Wyobraźmy sobie, że mamy do czynienia z samochodem autonomicznym. Ważnym zadaniem takiego samochodu jest zdolność szybko hamować.
+Żeby to zbadać postanawiamy zrobić model i mamy dwie opcji do wyboru:
+1. Model dyskretny
+2. Model ciągły
+
+Załóżmy, że sterowanie hamowaniem w samochodzie odbywa się w sposób podania sygnału na mikrokontroler każdą sekundę. Wtedy obiektem naszego interesu będzie reakcja samochodu, jego prędkość w pewnej chwili w  zależności od podanego sygnału. W takim przypadku nie ma sensu modelować symulację , która będzie liczyć prędkość samochodu w każdej milisekundzie, bo taka symulacja nie niesie potrzebnej nam informacji, natomiast ma duży koszt obliczeniowy ( np. dla 10 sekund wykona 10 000 obliczeń ). Możemy zamiast tego utworzyć symulację dyskretną, która będzie liczyła prędkość samochodu raz w sekundę. Zamiast 10 000 operacji, wykonamy 10, nie tracąc informacji.
+
+Zadanie 3. Kapitalizacja odsetek
+Widzimy przykład wykorzystania systemów dyskretnych dla problemów związanych z życiem rzeczywistym. Jest to sytuacja, w której przydają się modele dyskretne. W okresie między każdą kapitalizacją, ilość pieniędzy na koncie się nie zmienia, dlatego nie ma sensu ciągłe to przeliczać. Możemy natomiast użyć modelu dyskretnego, który będzie obliczać tylko zmiany na koncie i pozwoli nam otrzymać poszukiwaną informację mniejszym kosztem obliczeniowym.
+
+Zadanie 4. Metoda Newtona-Rapsona
+Metoda Newtona-Rapsona pozwala na skuteczne znalezienie pierwiastków funkcji, w przypadku spełniania pewnych warunków:
+1. Pochodna funkcji musi mieć ten sam znak na całym przedziałe. ( jest to potrzebne, żeby funkcja zbiegała do pewnej wartości )
+2. Pochodna funkcji musi być ciągła.
+3. Wartość początkowa musi być stosunkowo blisko do poszukiwanego pierwiastka.
+Problemem, który może się pojawić przy korzystaniu z metody Newtona-Rapsona - jest to, że nie gwarantuje ona tego, że znajdzie pierwiastek, które jest najbliżej do punktu początkowego. Jest to związane z tym, że algorytm jest algorytmy rekurencyjnym, ponadto zależy od wartości funkcji. Więc w przypadku jeżeli wartość funkcji jest duża, a wartość funkcji jest duża, a pochodna stosunkowo mała, algorytm może przelecieć jeden z pierwiastków. W ćwiczeniu zobaczyliśmy to na przykładzie punktu początkowego -1, który przeleciał pierwiastek w punkcie 1 i znalazł go dopiero w punkcie 4.
+
+

@@ -1,3 +1,4 @@
+% Bohdan Forostianyi
 function plotData(Simulation,A,IC)
 %Simulation, A, Time
 % Simulation - Obiekt z przeprowadzonej symulacji
@@ -8,8 +9,8 @@ scatter(Simulation.simout.Time,Simulation.simout.Data,'filled');
 hold on
 plot(Simulation.simout.Time,Simulation.simout.Data,'r');
 hold on
-Time = 0:0.1:10;
-plot(Time,exp(A*Time)*IC,'k');
+T = 0:0.1:10;
+plot(T,exp(A*T)*IC,'k');
 hold off
 grid
 legend('Wartosci x(t)','Interpolowana funkcja x(t)','Rzeczywista funkcja x(t)')
