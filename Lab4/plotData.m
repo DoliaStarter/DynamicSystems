@@ -9,6 +9,8 @@ hold on
 plot(OutSig.Time,OutSig.Data(:,1),Color)
 hold off 
 grid 
+ylabel('Amplituda')
+xlabel('Czas')
 legend('Sygnal wejsciowy','Symulacyjna odpowiedz')
 disp('Press any key ....')
 pause
