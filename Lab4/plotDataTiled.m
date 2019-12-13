@@ -1,15 +1,18 @@
 %Forostianyi Bohdan
-function plotData(InputSig,OutSig,Color)
+function plotDataTiled(InputSig,OutSig,Color)
 % InputSin- inout sinusoidal signal
 % SimOut - system reaction on signal
 % Color - plot color
+tiledlayout(2,1);
 
+nexttile
 plot(InputSig.Time,InputSig.Data(:,1),Color,'LineStyle','-.')
-hold on
+grid
+legend('Sygnal wejsciowy')
+nexttile
 plot(OutSig.Time,OutSig.Data(:,1),Color)
-hold off 
 grid 
-legend('Sygnal wejsciowy','Symulacyjna odpowiedz')
+legend('Symulacyjna odpowiedz')
 disp('Press any key ....')
 pause
 
