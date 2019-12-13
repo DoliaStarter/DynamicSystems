@@ -1,5 +1,6 @@
 clear all
-
+gcf = figure();
+set(gcf, 'Position',  [100, 100, 700, 700])
 SimTime = 10;
 
 %zad 2 
@@ -46,7 +47,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
 end
 
 Numerator=[0.4 0]
@@ -56,7 +57,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
 end
     
 Numerator=[1 0]
@@ -66,7 +67,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
 end
     
 Numerator=[0 1]
@@ -76,7 +77,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
 end
     
 
@@ -102,8 +103,7 @@ FreqV = [1,pi/3,pi/4,pi/2];
 PhV = [0,pi/3,pi/4,pi/2];
 AV =  [1,2,3,4];
 colors = ['r','g','b','k'];
-gcf = figure();
-set(gcf, 'Position',  [100, 100, 700, 700])
+
 % Zmiana czestotliwosci
 disp('Chaging frequency')
 for i = 1:length(FreqV)
