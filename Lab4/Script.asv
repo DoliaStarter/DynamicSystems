@@ -50,17 +50,7 @@ plotDataTiled(a.sim_in,a.sim_out,'k');
 end
 
 Numerator=[0.4 0]
-Denominator=[0.4 1]
-for i = 1:length(FreqV)
-Freq = FreqV(i);
-Ph = PhV(i);
-A = AV(i);
-a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k');
-end
-    
-Numerator=[1 0]
-Denominator=[1 2 1]
+Denominator=[4 1]
 for i = 1:length(FreqV)
 Freq = FreqV(i);
 Ph = PhV(i);
@@ -70,7 +60,17 @@ plotDataTiled(a.sim_in,a.sim_out,'k');
 end
     
 Numerator=[0 1]
-Denominator=[1 0.1 1]
+Denominator=[4 1]
+for i = 1:length(FreqV)
+Freq = FreqV(i);
+Ph = PhV(i);
+A = AV(i);
+a = sim('Lab_4');
+plotDataTiled(a.sim_in,a.sim_out,'k');
+end
+    
+Numerator=[0 1]
+Denominator=[4 1]
 for i = 1:length(FreqV)
 Freq = FreqV(i);
 Ph = PhV(i);
