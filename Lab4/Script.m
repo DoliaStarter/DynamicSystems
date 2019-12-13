@@ -2,7 +2,8 @@ clear all
 gcf = figure();
 set(gcf, 'Position',  [100, 100, 700, 700])
 SimTime = 10;
-
+Numerator=[0 1]
+Denominator=[1 0.1 1]
 %zad 2 
 H = tf([0 0 1],[1 1 2]);
 nyquist(H)
@@ -57,7 +58,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter gornoprzepustowy");
 end
     
 Numerator=[1 0]
@@ -67,7 +68,7 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter psamoprzepustowy");
 end
     
 Numerator=[0 1]
@@ -77,14 +78,34 @@ Freq = FreqV(i);
 Ph = PhV(i);
 A = AV(i);
 a = sim('Lab_4');
-plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter drugiego rzedu");
 end
-    
 
 
 
+disp('Suma sygnalow')
+Numerator=[0 1]
+Denominator=[4 1]
 
+a = sim('SumFilter');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy");
 
+Numerator=[0.4 0]
+Denominator=[0.4 1]
+
+a = sim('SumFilter');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter gornoprzepustowy");
+   
+Numerator=[1 0]
+Denominator=[1 2 1]
+
+a = sim('SumFilter');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter pasmoprzepustowy");
+
+Numerator=[0 1]
+Denominator=[1 0.1 1]
+a = sim('SumFilter');
+plotDataTiled(a.sim_in,a.sim_out,'k',"Filter drugiego rzedu");
 
 
 
