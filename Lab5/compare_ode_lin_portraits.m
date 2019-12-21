@@ -16,7 +16,7 @@ function compare_ode_lin_portraits(equilibrium, x1der,x2der, lin_x1der,lin_x2der
    xlabel('x_1(t)')
    ylabel('x_2(t)')
    legend('Original function','Linearized function')
-   title('Comprasion bevave of original and linearized equations')
+   title('Comprasion behave of original and linearized equations')
    disp('Press any key ...')
    pause
 end
