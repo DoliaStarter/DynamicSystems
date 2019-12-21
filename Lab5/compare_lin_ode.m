@@ -1,3 +1,4 @@
+%Bohdan Forostianyi
 function compare_lin_ode(ode,linearized_ode, equilibrium, initial_conditions)
      % Plot on figure graph of function and it's linearized version for
      % some equilibrium
@@ -18,6 +19,7 @@ function compare_lin_ode(ode,linearized_ode, equilibrium, initial_conditions)
      xlabel('t')
      ylabel('x(t)')
      legend("IC = equilibrium point","Dynamic of original system","Dynamic of linearized system")
+     title('Comprasion of original and linearized equations')
      disp('Press any key')
      pause
 end
