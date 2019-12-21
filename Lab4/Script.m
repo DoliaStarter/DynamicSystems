@@ -1,3 +1,5 @@
+%Forostianyi Bohdan
+
 clear all
 gcf = figure();
 set(gcf, 'Position',  [100, 100, 700, 700])
@@ -89,24 +91,24 @@ disp('Suma sygnalow')
 Numerator=[0 1]
 Denominator=[4 1]
 
-a = sim('SumFilter');
+a = sim('FilterSum');
 plotDataTiled(a.sim_in,a.sim_out,'k',"Filter dolnoprzepustowy Czestotliwosc="+FreqV(i),'Sygnal wejsciowy','Sygnal wyjsciowy');
 
 Numerator=[0.4 0]
 Denominator=[0.4 1]
 
-a = sim('SumFilter');
+a = sim('FilterSum');
 plotDataTiled(a.sim_in,a.sim_out,'k',"Filter gornoprzepustowy Czestotliwosc="+FreqV(i),'Sygnal wejsciowy','Sygnal wyjsciowy');
    
 Numerator=[1 0]
 Denominator=[1 2 1]
 
-a = sim('SumFilter');
+a = sim('FilterSum');
 plotDataTiled(a.sim_in,a.sim_out,'k',"Filter pasmoprzepustowy Czestotliwosc="+FreqV(i),'Sygnal wejsciowy','Sygnal wyjsciowy');
 
 Numerator=[0 1]
 Denominator=[1 0.1 1]
-a = sim('SumFilter');
+a = sim('FilterSum');
 plotDataTiled(a.sim_in,a.sim_out,'k',"Filter drugiego rzedu Czestotliwosc="+FreqV(i),'Sygnal wejsciowy','Sygnal wyjsciowy');
 
 
@@ -159,7 +161,7 @@ end
 %Zadanie 4. Zamodelowany filtr
 A=1;
 Ph=0;
-Cutoff = sqrt(25 + 81); % Illia Bannitsyn 5 i 9 liter => 25 + 81
+Cutoff = sqrt(length('Forostianyi')^2 + length('Bohdan')^2); 
 % Cutoff frequency for low-pass RC filter = 1/RC. => R * C = 0.1 * Cutoff
 R = 1/Cutoff;
 C = 1;
